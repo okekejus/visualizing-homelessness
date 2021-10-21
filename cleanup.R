@@ -167,5 +167,5 @@ remove(shrink, output, new.names, i)
 
 # Create new files ----------------------------------------------------------------------------
 
-write.csv(new.data.2020, "data/New.Data.2020.csv")
+write.csv(new.data.2020, "data/New_Data_2020.csv")
 
