@@ -68,7 +68,7 @@ for (i in seq_along(shrink)) {
   output[[i]] <- as.numeric(shrink[[i]])
 }
 
-shrink <- cbind(raw.data.2020[1], raw.data.2020[2], raw.data.2020[3], output) %>%
+shrink <- cbind(raw.data.2020[1:3], output) %>%
   tibble()
 
 names(shrink) <- new_names
@@ -96,12 +96,75 @@ regions = read_csv("data/Regions.csv")
 # Will be removing the "Total" column as it makes things slightly difficult, and can easily 
 # be calculated with a colSums() function.
 
-new.data.2020 = new.data.2020[-c(57), ]
+new.data.2020 <- new.data.2020[-c(57), ]
 
 
-new.data.2020 = left_join(new.data.2020, regions) 
+new.data.2020 <- left_join(new.data.2020, regions) 
  
 remove(regions)
+
+# Calculating Rates ------------------------------------------------------------------------
+# The map will be a lot more interesting to visualize if the data are in rates, so I will be 
+# calculating them below.
+
+new.data.2020 <- read_csv("data/New.Data.2020.csv") %>%
+  select(-c(1)) %>%
+  mutate(Homeless.Rate = round((Total.Homeless/Total.Population) * 10000), 0) %>%
+  select(State, CoC, Total.Population, Total.Homeless, Homeless.Rate, everything())
+
+
+summary(new.data.2020$Homeless.Rate)
+
+# Checking to see the difference between rates 
+ggplot(data = subset(new.data.2020, !is.na(Total.Homeless))) +
+  geom_histogram(aes(x = Homeless.Rate), binwidth = 40, fill = "#ADD8E6", color = "black") +
+  theme_light()
+
+
+# The overall homelessness rate will be the base of the map. Other rates will be calculated using: 
+homeless.rate <- function(a) {
+  data <- (a/new.data.2020$Total.Population) * 10000
+  data <- round(data, digits = 0)
+  returnValue(data)
+}
+
+
+names(new.data.2020) # First list the names to see which to select 
+
+new.names <- c("Rate.Over.24", "Rate.Under.24", "Female.Rate", "Male.Rate", "Trans.Rate", 
+               "NC.Rate", "Non.Lat.Rate", "Lat.Rate", "White.Rate", "Black.Rate", "Asian.Rate", 
+               "Indian.Rate", "Native.Rate") # assign new names 
+
+
+output <- tibble(a = rep(0, length(new.data.2020$State)), 
+                 b = rep(0, length(new.data.2020$State)),
+                 c = rep(0, length(new.data.2020$State)),
+                 d = rep(0, length(new.data.2020$State)),
+                 e = rep(0, length(new.data.2020$State)), 
+                 f = rep(0, length(new.data.2020$State)),
+                 g = rep(0, length(new.data.2020$State)), 
+                 h = rep(0, length(new.data.2020$State)),
+                 i = rep(0, length(new.data.2020$State)), 
+                 j = rep(0, length(new.data.2020$State)), 
+                 k = rep(0, length(new.data.2020$State)), 
+                 l = rep(0, length(new.data.2020$State)), 
+                 m = rep(0, length(new.data.2020$State))) #empty df 
+
+shrink <- new.data.2020 %>%
+  select(c(6:18))
+
+
+for (i in seq_along(shrink)) {
+  output[[i]] <- homeless.rate(shrink[[i]])
+}
+
+names(output) <- new.names
+
+new.data.2020 <- cbind(new.data.2020, output) %>%
+  tibble()
+
+remove(shrink, output, new.names, i)
+
 # Create new files ----------------------------------------------------------------------------
 
 write.csv(new.data.2020, "data/New.Data.2020.csv")
