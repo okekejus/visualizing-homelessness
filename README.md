@@ -1,4 +1,4 @@
-# visualizing-homelessness
+# Visualizing Homelessness
 Choropleth map application showing rates of homelessness in countries. 
 
 
