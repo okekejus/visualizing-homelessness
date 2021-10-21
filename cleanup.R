@@ -99,8 +99,7 @@ regions = read_csv("data/Regions.csv")
 new.data.2020 = new.data.2020[-c(57), ]
 
 
-new.data.2020 = merge(new.data.2020, regions) %>%
-  tibble()
+new.data.2020 = left_join(new.data.2020, regions) 
  
 remove(regions)
 # Create new files ----------------------------------------------------------------------------
