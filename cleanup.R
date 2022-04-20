@@ -135,20 +135,8 @@ new.names <- c("Rate.Over.24", "Rate.Under.24", "Female.Rate", "Male.Rate", "Tra
                "NC.Rate", "Non.Lat.Rate", "Lat.Rate", "White.Rate", "Black.Rate", "Asian.Rate", 
                "Indian.Rate", "Native.Rate") # assign new names 
 
-
-output <- tibble(a = rep(0, length(new.data.2020$State)), 
-                 b = rep(0, length(new.data.2020$State)),
-                 c = rep(0, length(new.data.2020$State)),
-                 d = rep(0, length(new.data.2020$State)),
-                 e = rep(0, length(new.data.2020$State)), 
-                 f = rep(0, length(new.data.2020$State)),
-                 g = rep(0, length(new.data.2020$State)), 
-                 h = rep(0, length(new.data.2020$State)),
-                 i = rep(0, length(new.data.2020$State)), 
-                 j = rep(0, length(new.data.2020$State)), 
-                 k = rep(0, length(new.data.2020$State)), 
-                 l = rep(0, length(new.data.2020$State)), 
-                 m = rep(0, length(new.data.2020$State))) #empty df 
+output <- data.frame(matrix(NA, nrow = length(new.data.2020$State), ncol = 13)) %>% 
+          tibble() #empty df 
 
 shrink <- new.data.2020 %>%
   select(c(6:18))
