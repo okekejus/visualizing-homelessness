@@ -1,6 +1,11 @@
-# Visualizing Homelessness
-Choropleth map application showing rates of homelessness in countries. 
+# Table of Contents 
 
+Background 
+Objective 
+Tools and Packages 
+Data Collection & Processing
+Data Visualization 
+Results 
+Future Work 
+References 
 
-
-This was an idea I got after talking about homelessness with some of my friends. I decided to gather some numbers on Homeless individuals in the US, and use R to create the maps in order to easily draw conclusions about rates. 
