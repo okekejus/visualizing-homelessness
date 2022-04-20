@@ -17,8 +17,8 @@ My friends and I were spending some time stressing about inflation rates and the
 Create an appealing, informative visual detailing rates of homelessness in the United States. 
 
 ## Tools and Packages 
-For this project R, in combination with the following packages: 
-shiny: Building interactive web apps 
+For this project, I used R in combination with the following packages: 
+- shiny: Building interactive web apps 
 - shinydashboard: Dashboard layouts for shiny apps
 - openxlsx: Reading & writing Excel workbooks
 - leaflet: JavaScript library for interactive maps 
