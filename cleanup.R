@@ -42,22 +42,9 @@ new_names <- c("State", "Total.Population","CoC", "Total.Homeless", "Homeless.U1
               "Homeless.Black", "Homeless.Asian", "Homeless.Indian", "Homeless.Native")
 
 # Create empty output for loop (15 columns, because only rows 4-18 are being altered.)
-
-output <- tibble(a = rep(0, length(raw.data.2020$State)), 
-                b = rep(0, length(raw.data.2020$State)),
-                c = rep(0, length(raw.data.2020$State)),
-                d = rep(0, length(raw.data.2020$State)),
-                e = rep(0, length(raw.data.2020$State)), 
-                f = rep(0, length(raw.data.2020$State)),
-                g = rep(0, length(raw.data.2020$State)), 
-                h = rep(0, length(raw.data.2020$State)),
-                i = rep(0, length(raw.data.2020$State)), 
-                j = rep(0, length(raw.data.2020$State)), 
-                k = rep(0, length(raw.data.2020$State)), 
-                l = rep(0, length(raw.data.2020$State)), 
-                m = rep(0, length(raw.data.2020$State)), 
-                n = rep(0, length(raw.data.2020$State)), 
-                o = rep(0, length(raw.data.2020$State)))
+output <- data.frame(matrix(NA, nrow = length(raw.data.2020$State), ncol = 13) %>%
+                     tibble()
+                     
 
 
 shrink <- raw.data.2020 %>%
