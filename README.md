@@ -31,7 +31,7 @@ For this project, I used R in combination with the following packages:
 I've included a cleanup.py file for....versatility purposes. 
 
 ## Data Collection & Processing 
-I got the raw homelessness data from the (HUD Exchange)[https://www.hudexchange.info/], and it contains information on different homeless populations of the different states in the U.S. After doing a little bit of research, I decided to show homelessness as a rate per 10,000 persons (scaled up to match populations in the hundred thousands, millions). 
+I got the raw homelessness data from the [HUD Exchange](https://www.hudexchange.info/), and it contains information on different homeless populations of the different states in the U.S. After doing a little bit of research, I decided to show homelessness as a rate per 10,000 persons (scaled up to match populations in the hundred thousands, millions). 
 
 There was a little confusion when trying to find a shapefile (digital vector format for storing geographical information), but luckily the tigris package allowed me to download a shapefile directly into R! 
 
@@ -42,7 +42,7 @@ These were then placed on a shiny app for hosting!
 ## Results 
 ![image](https://user-images.githubusercontent.com/91495866/165198547-5ce70dff-1aef-4fec-9326-cd8f1ce47b0e.png)
 
-The completed app can be viewed (here)[https://sutnij.shinyapps.io/Visualizing_Homelessness/]
+The completed app can be viewed [here](https://sutnij.shinyapps.io/Visualizing_Homelessness/)
 
 ## Future Work 
 The logical next step would be to update the app with data from other countries, and then keep this information updated as time goes on. 
